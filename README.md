@@ -13,7 +13,7 @@ Can be adapted to work with open-source Large Language Models like Llama-3, prov
 
 ## Notes about deploying to production
 
-Because websockets requires ASGI instead of WSGI server, you should use something like Uvicorn: https://www.uvicorn.org/. I provided an example how to set this up in the `docker-compose.yml` file.
+Because websockets requires ASGI instead of WSGI server, you should use something like Uvicorn: https://www.uvicorn.org/ to serve your application. I provided an example how to set this up in the `docker-compose.yml` file. Check out the additional environment variables in there if you plan on deploying this.
 
 ## Running the application locally:
 
@@ -36,7 +36,7 @@ python manage.py runserver
 ## Running the application in docker-compose:
 
 - Create OpenAI api key at: https://platform.openai.com/ 
-- Create `.env` file to the root directory. Example: `.env_example``
+- Create `.env` file to the root directory. Example: `.env_example`.
 
 ```
 docker-compose build
