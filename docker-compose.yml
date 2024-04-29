@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=0
+      - DB_HOST=db-chatbot
+      - DB_NAME=db_chatbot
+      - DB_USER=dbuser
+      - DB_PASS=testing321
+      - ALLOWED_HOSTS=127.0.0.1
+      - CSRF_TRUSTED_ORIGINS=http://127.0.0.1:8000
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL}
+      - ENVIRONMENT=production
+    volumes:
+      - static_data_2:/vol/web
+    depends_on:
+      - db-chatbot
+
+  nginx:
+    build:
+      context: ./nginx_proxy
+    ports:
+      - "8000:8000"
+    volumes:
+      - static_data_2:/vol/web
+    depends_on:
+      - app
+
+  db-chatbot:
+    image: postgres:16-alpine
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=db_chatbot
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=testing321
+    ports:
+      - 5432:5432
+    
+volumes:
+  static_data_2:
+  postgres_volume:
+  

@@ -1,0 +1,8 @@
+__pycache__
+*.pyc
+db.sqlite3
+venv/
+.env
+notes.txt
+staticfiles/
+venv_prod/

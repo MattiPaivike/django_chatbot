@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    
+    <title>Chatbot</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <!-- HTMX -->
+    <script src="{% static 'htmx/htmx.min.js' %}"></script>
+    <!-- HTMX websocket extension -->
+    <script src="{% static 'htmx/ws.js' %}"></script>
+    <!-- Bootstrap Javascript -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

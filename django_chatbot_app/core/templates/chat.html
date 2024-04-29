@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center mb-4">
+    <h1 class="display-4">Chatbot</h1>
+</div>
+<div id="chatbot" hx-ext="ws" ws-connect="/ws/ai-demo/{{ conversation.id }}/" class="card">
+    <div class="card-body">
+        <div class="conversation" id="message-list">
+            {% if conversation.conversation %}
+                {% for message in conversation.conversation %}
+                    <div class="{{ message.role }}-message chatbot-text-system mb-2">
+                        {{ message.content }}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="assistant-message chatbot-text-system mb-2">
+                    Start a new conversation by sending a message.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card-footer">
+        <form id="input-form" ws-send class="d-flex">
+            <input id="input-field" name="message" type="text" placeholder="Type your message here" class="form-control me-2">
+            <button id="submit-button" type="submit" class="btn btn-primary">
+                Send
+            </button>
+        </form>
+    </div>
+</div>
+<script>
+  // clear message input after sending our new message
+  document.body.addEventListener('htmx:wsAfterSend', function(evt) {
+    document.getElementById("input-field").value = "";
+  });
+  // scroll to bottom of chat after every incoming message
+  document.body.addEventListener('htmx:wsAfterMessage', function(evt) {
+    const chatUI = document.getElementById('message-list');
+    chatUI.scrollTop = chatUI.scrollHeight;
+  });
+</script>
+{% endblock %}

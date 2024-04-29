@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-3">
+    <h2 class="mb-4">Conversation history:</h2>
+    {% if conversations %}
+        <div class="list-group">
+            {% for conversation in conversations %}
+                <a href="/chat/{{ conversation.id }}/" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    Conversation on {{ conversation.created_at|date:"M d, Y H:i" }}
+                    <span class="badge bg-primary rounded-pill">{{ conversation.messages.count }}</span>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            No conversations yet.
+        </div>
+    {% endif %}
+    <div class="mt-4">
+        <form method="post" action="{% url 'start_new_conversation' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Start New Conversation</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
