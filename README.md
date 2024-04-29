@@ -20,7 +20,7 @@ Because websockets requires ASGI instead of WSGI server, you should use somethin
 - Create OpenAI api key at: https://platform.openai.com/ 
 - Create `.env` file to the root directory. Example: `.env_example`
 
-- Create your virtual environmennt and install dependencies:
+- Create your virtual environment and install dependencies:
 ```
 pip install -r requirements.txt
 ```
