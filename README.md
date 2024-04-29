@@ -2,7 +2,7 @@
 
 ![Demo](images/demo.gif)
 
-While searching for an example of a Django-based chatbot powered by OpenAI and featuring asynchronous streaming, I found no suitable examples that incorporated HTMX. This prompted me to create my own implementation.
+While searching for an example of a Django-based chatbot powered by OpenAI and featuring asynchronous streaming, I found no suitable examples that incorporated HTMX and async. This prompted me to put together this repository.
 
 ### Key Features
 * Asynchronous Streaming: This project leverages the HTMX websockets extension and Django's AsyncWebsocketConsumer to achieve real-time, streaming interactions with the chatbot.
